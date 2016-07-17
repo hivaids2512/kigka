@@ -1,66 +1,68 @@
-	'use strict';
 
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var http = require('http');
-var logger = require('log4js').getLogger('Server');
-var rek = require('rekuire');
-var cls = require('continuation-local-storage');
-var mongoose = require("mongoose");
-var jwt = require('jsonwebtoken');
+'use strict';
 
-// Create Namespace (CLS)
-cls.createNamespace('kigkachatbot');
-var async = require('async');
+    var express = require('express');
+    var app = express();
+    var bodyParser = require('body-parser');
+    var http = require('http');
+    var logger = require('log4js').getLogger('Server');
+    var rek = require('rekuire');
+    var cls = require('continuation-local-storage');
+    var mongoose = require("mongoose");
+    var jwt = require('jsonwebtoken');
 
-app.disable('x-powered-by');
+    // Create Namespace (CLS)
+    cls.createNamespace('kigkachatbot');
+    var async = require('async');
 
-var config;
+    app.disable('x-powered-by');
 
-// Use Body Parser
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
-app.use(bodyParser.json());
+    var config;
 
-async.waterfall([
-    function(callback) {
-        config = require("./config");
-        callback(null);
-    },
-    function(callback) {
-        logger.info("Checking database connection...");
-        mongoose.connect(config.getConnectionString(), function(err){
-            if(err){
-                logger.error(err);
-                process.exit(1);
-            }else{
-                logger.info("Database connection OK!")
-            }
-        });
-        callback(null);
-    },
-    function(callback) {
-        var web = require('./kigkaChatbot_modules/web');
-        web.initRoutes(app);
-        callback(null);
-    }
+    // Use Body Parser
+    app.use(bodyParser.urlencoded({
+        extended: false
+    }));
+    app.use(bodyParser.json());
 
-], function(err) {
-    if (err) {
-        logger.error(err);
-        process.exit(1);
-    } else {
-        // Start Server
+    async.waterfall([
+        function(callback) {
+            config = require("./config");
+            callback(null);
+        },
+        function(callback) {
+            logger.info("Checking database connection...");
+            mongoose.connect(config.getConnectionString(), function(err) {
+                if (err) {
+                    logger.error(err);
+                    process.exit(1);
+                } else {
+                    logger.info("Database connection OK!")
+                }
+            });
+            callback(null);
+        },
+        function(callback) {
+            var web = require('./kigkaChatbot_modules/web');
+            web.initRoutes(app);
+            callback(null);
+        }
 
-	app.set('port', process.env.PORT || 3002);
-	app.set('ip', process.env.IP || "0.0.0.0");	
+    ], function(err) {
+        if (err) {
+            logger.error(err);
+            process.exit(1);
+        } else {
+            // Start Server
 
-        var port = app.get('port');
-        var server = app.get('ip');
-        http.createServer(app).listen(port, server, function() {
-            logger.info('Server is running on ' + server + ':' + port);
-        });
-    }
-});
+            app.set('port', process.env.PORT || 5000);
+            app.set('ip', process.env.IP || "127.0.0.1");
+
+            var port = app.get('port');
+            var server = app.get('ip');
+
+            http.createServer(app).listen(port, server, function() {
+                logger.info('Server is running on ' + server + ':' + port);
+            });
+        }
+    });

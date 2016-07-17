@@ -20,20 +20,6 @@ class fbBot {
         return null;
     }
 
-    /*
-    loadCases(botid, callback) {
-        plightServices.findByBotId({ "botid": botid }, function(err, plights) {
-            callback(err, plights);
-        });
-    }
-
-    getAccessToken(botid, callback) {
-        botServices.findBotById(botid, function(err, bot) {
-            callback(err, bot);
-        });
-    }
-    */
-
     reply(botid, senderid, input, res) {
         var that = this;
         async.waterfall([
@@ -69,20 +55,35 @@ class fbBot {
                         case 'text':
                             fbServices.sendTextMessage(senderid, plight.output[0], accesstoken);
                             res.send('sd');
-                        case 'button':
-                            //text = "Today is Sunday";
                             break;
-
+                        case 'button':
+                            fbServices.sendButtonMessage(senderid, plight.output[0], accesstoken);
+                            res.send('sd');
+                            break;
                         case 'generic':
-
-                        case 'attachment':
-
+                            fbServices.sendGenericMessage(senderid, plight.output[0], accesstoken);
+                            res.send('sd');
+                            break;
+                        case 'image':
+                            fbServices.sendAttachment(senderid, plight.output[0], accesstoken);
+                            res.send('sd');
+                            break;
+                        case 'video':
+                            fbServices.sendAttachment(senderid, plight.output[0], accesstoken);
+                            res.send('sd');
+                            break;
+                        case 'file':
+                            fbServices.sendAttachment(senderid, plight.output[0], accesstoken);
+                            res.send('sd');
+                            break;
                         default:
-                            text = "Looking forward to the Weekend";
+                            fbServices.sendTextMessage(senderid, 'Sorry! I did not understand you!', accesstoken);
+                            res.send('o');
+                            break;
                     }
                 } else {
                     fbServices.sendTextMessage(senderid, 'Sorry! I did not understand you!', accesstoken);
-		    res.send('o');
+		            res.send('o');
                 }
 
                 callback(null);

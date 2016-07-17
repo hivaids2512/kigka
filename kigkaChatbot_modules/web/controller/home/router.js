@@ -7,7 +7,7 @@ var fbBot = require("../../../bot/fb/fbBot");
 // respond with "hello world" when a GET request is made to the homepage
 router.get('/', function(req, res) {
   logger.info(req.url);	
-  res.send("asd");
+  res.send("Home!");
 });
 
 module.exports = router;

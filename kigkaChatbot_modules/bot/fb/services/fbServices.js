@@ -166,33 +166,18 @@ class fbServices {
         });
     }
 
-    sendGenericMessage(senderId, posts, accesstoken) {
+    sendGenericMessage(senderId, elements, accesstoken) {
 
         var messageData = {
             "attachment": {
                 "type": "template",
                 "payload": {
                     "template_type": "generic",
-                    "elements": []
+                    "elements": elements
                 }
             }
         };
 
-        var messageElements = posts.map(post => {
-            return {
-                title: "Article",
-                subtitle: post.title,
-                item_url: post.URL,
-                image_url: post.featured_image,
-                buttons: [{
-                    type: "web_url",
-                    url: post.URL,
-                    title: "Read this"
-                }]
-            }
-        });
-
-        messageData.attachment.payload.elements = messageElements;
         request({
             url: this.config.getFbGraphMessUrl(),
             qs: {
