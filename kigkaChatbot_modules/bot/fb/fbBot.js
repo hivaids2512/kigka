@@ -45,8 +45,6 @@ class fbBot {
                         logger.error(err);
                         return err;
                     } else {
-			logger.info(botid);
-			logger.info(bot[0]);
                         callback(null, bot[0].accesstoken);
                     }
                 });
@@ -58,7 +56,6 @@ class fbBot {
                         logger.error(err);
                         return err;
                     } else {
-			logger.info(accesstoken);
                         callback(null, accesstoken, plights);
                     }
                 });
