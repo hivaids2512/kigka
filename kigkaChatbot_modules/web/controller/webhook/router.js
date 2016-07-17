@@ -41,7 +41,7 @@ router.post('/api/webhook/:botid', function(req, res) {
                 } else {
 			res.send("kidding me?");
                 }
-                res.send("kidding me?");
+
             }
         }
     } else {
