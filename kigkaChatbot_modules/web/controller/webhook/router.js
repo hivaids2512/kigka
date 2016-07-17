@@ -40,7 +40,7 @@ router.post('/api/webhook/:botid', function(req, res) {
                     // var payload = message.postback.payload;
                     //fbbot.processPostback(senderId, payload, accesstoken);
                 } else {
-			//res.send("kidding me?");
+			res.send("kidding me?");
                 }
             }
         }

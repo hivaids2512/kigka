@@ -26,6 +26,7 @@ router.post('/api/webhook/:botid', function(req, res) {
                 if (message.message) {
                     // If user send text
                     if (message.message.text) {
+			logger.info("quy3");
                         fbBot.reply(botid, senderId, message.message.text, res);
 			res.send("sd");
                     }
