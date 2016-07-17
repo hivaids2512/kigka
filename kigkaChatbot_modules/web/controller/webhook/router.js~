@@ -46,7 +46,7 @@ router.post('/api/webhook/:botid', function(req, res) {
     if (entries) {
         for (var entry of entries) {
             var messaging = entry.messaging;
-	    logger.info(messaging);
+	    logger.info(messaging );
             for (var message of messaging) {
                 var senderId = message.sender.id;
                 var pageId = message.recipient.id;
