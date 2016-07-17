@@ -70,7 +70,7 @@ class fbBot {
                 if (plight) {
                     switch (plight.outputType) {
                         case 'text':
-                            fbServices.sendTextMessage(senderid, plight.output, accesstoken);
+                            fbServices.sendTextMessage(senderid, plight.output[0], accesstoken);
                             res.send('ok');
                         case 'button':
                             //text = "Today is Sunday";
