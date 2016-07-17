@@ -57,8 +57,8 @@ async.waterfall([
 	app.set('port', process.env.PORT || 3002);
 	app.set('ip', process.env.IP || "127.0.0.1");	
 
-        var port = config.getServerPort();
-        var server = config.getServerIp();
+        var port = app.get('port');
+        var server = app.get('ip');
         http.createServer(app).listen(port, server, function() {
             logger.info('Server is running on ' + server + ':' + port);
         });
