@@ -20,7 +20,7 @@ class fbBot {
         return null;
     }
 
-    reply(botid, senderid, input, res) {
+    reply(botid, senderid, input) {
         var that = this;
         async.waterfall([
 
@@ -53,37 +53,29 @@ class fbBot {
                 if (plight) {
                     switch (plight.outputType) {
                         case 'text':
-                            fbServices.sendTextMessage(senderid, plight.output[0], accesstoken);
-                            res.send('sd');
+                            fbServices.sendTextMessage(senderid, plight.output[0], accesstoken); 
                             break;
                         case 'button':
-                            fbServices.sendButtonMessage(senderid, plight.output[0], accesstoken);
-                            res.send('sd');
+                            fbServices.sendButtonMessage(senderid, plight.output[0].text, plight.output[0].buttons , accesstoken);
                             break;
                         case 'generic':
                             fbServices.sendGenericMessage(senderid, plight.output[0], accesstoken);
-                            res.send('sd');
                             break;
                         case 'image':
                             fbServices.sendAttachment(senderid, plight.output[0], accesstoken);
-                            res.send('sd');
                             break;
                         case 'video':
                             fbServices.sendAttachment(senderid, plight.output[0], accesstoken);
-                            res.send('sd');
                             break;
                         case 'file':
                             fbServices.sendAttachment(senderid, plight.output[0], accesstoken);
-                            res.send('sd');
                             break;
                         default:
                             fbServices.sendTextMessage(senderid, 'Sorry! I did not understand you!', accesstoken);
-                            res.send('o');
                             break;
                     }
                 } else {
                     fbServices.sendTextMessage(senderid, 'Sorry! I did not understand you!', accesstoken);
-		            res.send('o');
                 }
 
                 callback(null);

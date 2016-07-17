@@ -26,7 +26,7 @@ router.post('/api/webhook/:botid', function(req, res) {
                 if (message.message) {
                     // If user send text
                     if (message.message.text) {
-                        fbBot.reply(botid, senderId, message.message.text, res);
+                        fbBot.reply(botid, senderId, message.message.text);
                     }
                     // If user send attachment
                     else if (message.message.attachments) {
@@ -40,6 +40,7 @@ router.post('/api/webhook/:botid', function(req, res) {
                 } else {
 
                 }
+                res.send("kidding me?");
             }
         }
     } else {
