@@ -52,7 +52,7 @@ router.post('/api/webhook/:botid', function(req, res) {
                 if (message.message) {
                     // If user send text
                     if (message.message.text) {
-                        fbBot.reply(botid, senderId, data.message.text, res);
+                        fbBot.reply(botid, senderId, message.message.text, res);
                     }
                     // If user send attachment
                     else if (message.message.attachments) {
