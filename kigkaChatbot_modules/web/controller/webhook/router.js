@@ -14,12 +14,12 @@ router.get('/api/webhook/:botid', function(req, res) {
 
 router.post('/api/webhook/:botid', function(req, res) {
     var botid = req.params.botid;
-
+	logger.info("quy");
     var entries = req.body.entry;
     if (entries) {
         for (var entry of entries) {
             var messaging = entry.messaging;
-            logger.info(messaging);
+            logger.info("quy2");
             for (var message of messaging) {
                 var senderId = message.sender.id;
                 var pageId = message.recipient.id;
@@ -32,13 +32,14 @@ router.post('/api/webhook/:botid', function(req, res) {
                     else if (message.message.attachments) {
                         //fbbot.sendAttachmentBack(senderId, message.message.attachments[0], accesstoken);
                     }
+			res.send("sda");
                 }
                 // If user click button
                 else if (message.postback) {
                     // var payload = message.postback.payload;
                     //fbbot.processPostback(senderId, payload, accesstoken);
                 } else {
-
+			res.send("kidding me?");
                 }
                 res.send("kidding me?");
             }

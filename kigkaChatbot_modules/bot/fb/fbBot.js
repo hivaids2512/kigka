@@ -52,7 +52,7 @@ class fbBot {
                 //var sender = await (fbService.getSenderName(senderid, accesstoken));
                 if (plight) {
                     switch (plight.outputType) {
-                        case 'text':
+                        case 'text':	
                             fbServices.sendTextMessage(senderid, plight.output[0], accesstoken); 
                             break;
                         case 'button':

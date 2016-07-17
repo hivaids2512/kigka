@@ -14,46 +14,21 @@ router.get('/api/webhook/:botid', function(req, res) {
 
 router.post('/api/webhook/:botid', function(req, res) {
     var botid = req.params.botid;
-    
-/*
-    var data = req.body;
-    if (data) {
-        var senderId = data.sender.id;
-        var pageId = data.recipient.id;
-        if (data.message) {
-            // If user send text
-            if (data.message.text) {
-                fbBot.reply(botid, senderId, data.message.text, res);
-            }
-            // If user send attachment
-            else if (data.message.attachments) {
-                //fbbot.sendAttachmentBack(senderId, message.message.attachments[0], accesstoken);
-            }
-        }
-        // If user click button
-        else if (data.postback) {
-            //var payload = message.postback.payload;
-            //fbbot.processPostback(senderId, payload, accesstoken);
-        }
-
-    } else {
-        res.send("kidding me?");
-    }
-
-*/
-
+	logger.info("quy");
     var entries = req.body.entry;
     if (entries) {
         for (var entry of entries) {
             var messaging = entry.messaging;
-	    logger.info(messaging );
+            logger.info("quy2");
             for (var message of messaging) {
                 var senderId = message.sender.id;
                 var pageId = message.recipient.id;
                 if (message.message) {
                     // If user send text
                     if (message.message.text) {
+			logger.info("quy3");
                         fbBot.reply(botid, senderId, message.message.text, res);
+			res.send("sd");
                     }
                     // If user send attachment
                     else if (message.message.attachments) {
@@ -62,12 +37,11 @@ router.post('/api/webhook/:botid', function(req, res) {
                 }
                 // If user click button
                 else if (message.postback) {
-                   // var payload = message.postback.payload;
+                    // var payload = message.postback.payload;
                     //fbbot.processPostback(senderId, payload, accesstoken);
+                } else {
+			res.send("kidding me?");
                 }
-		else{
-			res.send("sad");
-		}
             }
         }
     } else {
