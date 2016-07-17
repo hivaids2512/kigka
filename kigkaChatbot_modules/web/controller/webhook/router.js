@@ -34,6 +34,7 @@ router.post('/api/webhook/:botid', function(req, res) {
                     else if (message.message.attachments) {
                         //fbbot.sendAttachmentBack(senderId, message.message.attachments[0], accesstoken);
                     }
+			res.send("sda");
                 }
                 // If user click button
                 else if (message.postback) {
