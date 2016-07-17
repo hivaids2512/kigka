@@ -14,7 +14,8 @@ router.get('/api/webhook/:botid', function(req, res) {
 
 router.post('/api/webhook/:botid', function(req, res) {
     var botid = req.params.botid;
-    console.log(botid);
+    logger.info(req.body);
+/*
     var data = req.body;
     if (data) {
         var senderId = data.sender.id;
@@ -39,11 +40,8 @@ router.post('/api/webhook/:botid', function(req, res) {
         res.send("kidding me?");
     }
 
+*/
 
-
-
-
-    /*
     var entries = req.body.entry;
     if (entries) {
         for (var entry of entries) {
@@ -54,24 +52,23 @@ router.post('/api/webhook/:botid', function(req, res) {
                 if (message.message) {
                     // If user send text
                     if (message.message.text) {
-                        fbBot.reply(botid, senderid, message.message.text);
+                        fbBot.reply(botid, senderId, data.message.text, res);
                     }
                     // If user send attachment
                     else if (message.message.attachments) {
-                        fbbot.sendAttachmentBack(senderId, message.message.attachments[0], accesstoken);
+                        //fbbot.sendAttachmentBack(senderId, message.message.attachments[0], accesstoken);
                     }
                 }
                 // If user click button
                 else if (message.postback) {
-                    var payload = message.postback.payload;
-                    fbbot.processPostback(senderId, payload, accesstoken);
+                   // var payload = message.postback.payload;
+                    //fbbot.processPostback(senderId, payload, accesstoken);
                 }
             }
         }
     } else {
         res.send("kidding me?");
     }
-    */
 
 });
 
