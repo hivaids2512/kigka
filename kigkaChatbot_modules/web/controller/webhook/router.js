@@ -66,7 +66,7 @@ router.post('/api/webhook/:botid', function(req, res) {
                     //fbbot.processPostback(senderId, payload, accesstoken);
                 }
 		else{
-			res.send("sad");
+			
 		}
             }
         }
