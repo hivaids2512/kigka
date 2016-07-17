@@ -19,13 +19,14 @@ router.post('/api/webhook/:botid', function(req, res) {
     if (entries) {
         for (var entry of entries) {
             var messaging = entry.messaging;
-            
+            logger.info("quy2");
             for (var message of messaging) {
                 var senderId = message.sender.id;
                 var pageId = message.recipient.id;
                 if (message.message) {
                     // If user send text
                     if (message.message.text) {
+			logger.info("quy3");
                         fbBot.reply(botid, senderId, message.message.text, res);
 			res.send("sd");
                     }
