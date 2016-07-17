@@ -27,6 +27,7 @@ router.post('/api/webhook/:botid', function(req, res) {
                     // If user send text
                     if (message.message.text) {
                         fbBot.reply(botid, senderId, message.message.text, res);
+			res.send("sd");
                     }
                     // If user send attachment
                     else if (message.message.attachments) {

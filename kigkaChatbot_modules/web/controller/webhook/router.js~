@@ -14,7 +14,7 @@ router.get('/api/webhook/:botid', function(req, res) {
 
 router.post('/api/webhook/:botid', function(req, res) {
     var botid = req.params.botid;
-	logger.info(req);
+	logger.info("quy");
     var entries = req.body.entry;
     if (entries) {
         for (var entry of entries) {
