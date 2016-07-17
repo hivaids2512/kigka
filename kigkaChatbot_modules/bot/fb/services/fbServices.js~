@@ -121,7 +121,7 @@ class fbServices {
             }
         };
         request({
-            url: this.config.getFbGraphMessUrl(),
+            url: config.getFbGraphMessUrl(),
             qs: {
                 access_token: accesstoken,
             },
@@ -146,7 +146,7 @@ class fbServices {
             attachment: attachment
         };
         request({
-            url: this.config.getFbGraphMessUrl(),
+            url: config.getFbGraphMessUrl(),
             qs: {
                 access_token: accesstoken,
             },
@@ -194,7 +194,7 @@ class fbServices {
 
         messageData.attachment.payload.elements = messageElements;
         request({
-            url: this.config.getFbGraphMessUrl(),
+            url: config.getFbGraphMessUrl(),
             qs: {
                 access_token: accesstoken,
             },
@@ -239,7 +239,7 @@ class fbServices {
 
         messageData.attachment.payload.elements = messageElements;
         request({
-            url: this.config.getFbGraphMessUrl(),
+            url: config.getFbGraphMessUrl(),
             qs: {
                 access_token: accesstoken,
             },
