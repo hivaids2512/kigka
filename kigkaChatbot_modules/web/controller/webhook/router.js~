@@ -14,7 +14,7 @@ router.get('/api/webhook/:botid', function(req, res) {
 
 router.post('/api/webhook/:botid', function(req, res) {
     var botid = req.params.botid;
-    logger.info(req.body);
+    console.log(botid);
     var data = req.body;
     if (data) {
         var senderId = data.sender.id;
