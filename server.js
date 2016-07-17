@@ -56,7 +56,7 @@
             // Start Server
 
             app.set('port', process.env.PORT || 5000);
-            app.set('ip', process.env.IP || "127.0.0.1");
+            app.set('ip', process.env.IP || "0.0.0.0");
 
             var port = app.get('port');
             var server = app.get('ip');
